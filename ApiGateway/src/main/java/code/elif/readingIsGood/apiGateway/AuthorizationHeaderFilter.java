@@ -1,7 +1,6 @@
 package code.elif.readingIsGood.apiGateway;
 
 import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.env.Environment;
@@ -14,12 +13,12 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
-public class AuthorizationHeaderFilterFactory extends AbstractGatewayFilterFactory<AuthorizationHeaderFilterFactory.Config> {
+public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
 
     final
     Environment env;
 
-    public AuthorizationHeaderFilterFactory(Environment env) {
+    public AuthorizationHeaderFilter(Environment env) {
         super(Config.class);
         this.env = env;
     }
