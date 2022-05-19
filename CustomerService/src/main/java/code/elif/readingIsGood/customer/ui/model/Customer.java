@@ -1,6 +1,5 @@
-package code.elif.readingIsGood.customer.model;
+package code.elif.readingIsGood.customer.ui.model;
 
-import code.elif.readingIsGood.customer.repository.dto.CustomerEntity;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -12,9 +11,9 @@ import java.io.Serializable;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Customer implements Serializable {
 
-    @NonNull
     private Integer id;
 
     @NonNull
@@ -36,14 +35,5 @@ public class Customer implements Serializable {
     @NotNull(message = "Password is required!")
     @Size(min = 6, max = 16, message = "Password must be at least 6 characters and maximum 16 characters!")
     private String password;
-
-
-    public static Customer map(CustomerEntity customerEntity) {
-        return new Customer(customerEntity.getId(),
-                customerEntity.getFirstName(),
-                customerEntity.getLastName(),
-                customerEntity.getEmail(),
-                customerEntity.getPassword());
-    }
 
 }

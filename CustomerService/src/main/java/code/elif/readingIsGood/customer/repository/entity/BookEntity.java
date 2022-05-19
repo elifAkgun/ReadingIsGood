@@ -1,4 +1,4 @@
-package code.elif.readingIsGood.customer.repository.dto;
+package code.elif.readingIsGood.customer.repository.entity;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class BookEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     private Integer id;
 

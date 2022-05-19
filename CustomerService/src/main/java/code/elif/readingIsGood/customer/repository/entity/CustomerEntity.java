@@ -1,4 +1,4 @@
-package code.elif.readingIsGood.customer.repository.dto;
+package code.elif.readingIsGood.customer.repository.entity;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class CustomerEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     @Column(name = "id")
     private Integer id;

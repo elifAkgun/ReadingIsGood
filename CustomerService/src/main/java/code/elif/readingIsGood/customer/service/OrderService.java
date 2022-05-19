@@ -1,7 +1,7 @@
 package code.elif.readingIsGood.customer.service;
 
 
-import code.elif.readingIsGood.customer.model.Order;
+import code.elif.readingIsGood.customer.ui.model.Order;
 
 import java.util.List;
 

@@ -1,10 +1,11 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.model.Customer;
+import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
+import code.elif.readingIsGood.customer.ui.model.Customer;
 import code.elif.readingIsGood.customer.repository.CustomerRepository;
 import code.elif.readingIsGood.customer.repository.OrderRepository;
-import code.elif.readingIsGood.customer.repository.dto.CustomerEntity;
+import code.elif.readingIsGood.customer.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -24,14 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerByNameAndPassword(String email, String password) {
+    public CustomerDTO getCustomerByNameAndPassword(String email, String password) {
         CustomerEntity customerEntity = customerRepository.findByEmail(email);
-        Customer customer = Customer.map(customerEntity);
+        CustomerDTO customer = new CustomerDTO();
+
+        ModelMapper modelMapper = new ModelMapper();
+        //Strictly matches source and destination properties
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        modelMapper.map(customerEntity,customer);
         return  customer;
     }
 
     @Override
-    public Customer createCustomer(Customer customer) {
+    public CustomerDTO createCustomer(CustomerDTO customer) {
         customer.setId(UUID.randomUUID().toString().hashCode());
 
         ModelMapper modelMapper = new ModelMapper();

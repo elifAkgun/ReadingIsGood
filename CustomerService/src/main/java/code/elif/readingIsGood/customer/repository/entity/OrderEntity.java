@@ -1,4 +1,4 @@
-package code.elif.readingIsGood.customer.repository.dto;
+package code.elif.readingIsGood.customer.repository.entity;
 
 
 
@@ -17,7 +17,6 @@ import java.util.List;
 public class OrderEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     private Integer id;
 

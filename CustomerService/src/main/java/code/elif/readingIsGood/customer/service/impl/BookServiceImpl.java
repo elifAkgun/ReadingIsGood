@@ -1,9 +1,9 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.model.Book;
+import code.elif.readingIsGood.customer.ui.model.Book;
 import code.elif.readingIsGood.customer.repository.BookRepository;
-import code.elif.readingIsGood.customer.repository.dto.BookEntity;
+import code.elif.readingIsGood.customer.repository.entity.BookEntity;
 import code.elif.readingIsGood.customer.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
 
         List<BookEntity> bookEntities = bookRepository.findAll();
         List<Book> books = new ArrayList<>();
-        bookEntities.stream().forEach(bookEntity -> books.add(Book.map(bookEntity)));
+       // bookEntities.stream().forEach(bookEntity -> books.add(Book.map(bookEntity)));
 
         return books;
     }

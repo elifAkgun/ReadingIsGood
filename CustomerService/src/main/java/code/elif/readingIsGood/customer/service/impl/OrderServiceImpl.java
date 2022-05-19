@@ -1,12 +1,12 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.model.Customer;
-import code.elif.readingIsGood.customer.model.Order;
+import code.elif.readingIsGood.customer.ui.model.Customer;
+import code.elif.readingIsGood.customer.ui.model.Order;
 import code.elif.readingIsGood.customer.repository.CustomerRepository;
 import code.elif.readingIsGood.customer.repository.OrderRepository;
-import code.elif.readingIsGood.customer.repository.dto.CustomerEntity;
-import code.elif.readingIsGood.customer.repository.dto.OrderEntity;
+import code.elif.readingIsGood.customer.repository.entity.CustomerEntity;
+import code.elif.readingIsGood.customer.repository.entity.OrderEntity;
 import code.elif.readingIsGood.customer.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +35,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public Order map(OrderEntity orderEntity) {
-        Optional<CustomerEntity> customer = customerRepository.findById(orderEntity.getCustomerId());
-        Order order = new Order(orderEntity.getId(), orderEntity.getDate(), Customer.map(customer.get()));
-        order.setBooks(orderEntity.getBooks());
-        return order;
+
+        return null;
     }
 }
