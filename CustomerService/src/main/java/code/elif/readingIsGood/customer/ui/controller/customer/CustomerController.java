@@ -46,8 +46,11 @@ public class CustomerController {
         CustomerDTO customerDTO = new CustomerDTO();
         modelMapper.map(customer, customerDTO);
 
+        Customer customerResp = new Customer();
         customerDTO = customerService.createCustomer(customerDTO);
-        modelMapper.map(customerDTO, customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
+        modelMapper.map(customerDTO, customerResp);
+        customerResp.setPassword(customer.getPassword());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerResp);
     }
 }
