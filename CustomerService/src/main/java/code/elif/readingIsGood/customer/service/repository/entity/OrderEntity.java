@@ -24,8 +24,9 @@ public class OrderEntity {
     private LocalDateTime date;
 
     @NonNull
-    @Column(name="CUSTOMER_ID")
-    private Integer customerId;
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private CustomerEntity customer;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable( name = 	"ORDER_ITEM",

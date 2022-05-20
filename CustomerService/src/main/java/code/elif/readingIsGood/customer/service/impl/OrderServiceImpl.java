@@ -1,14 +1,17 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
+import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
 import code.elif.readingIsGood.customer.service.dto.OrderDTO;
 import code.elif.readingIsGood.customer.service.repository.CustomerRepository;
 import code.elif.readingIsGood.customer.service.repository.OrderRepository;
+import code.elif.readingIsGood.customer.service.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.repository.entity.OrderEntity;
 import code.elif.readingIsGood.customer.service.OrderService;
-import code.elif.readingIsGood.customer.ui.model.Order;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,22 +31,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO findOrderById(Integer id) {
-
         OrderEntity orderEntity = orderRepository.findById(id).get();
         OrderDTO orderDTO = getOrderDTOFromEntity(orderEntity);
-
+        orderDTO.setCustomer(getCustomerDTOFromEntity(orderEntity.getCustomer()));
         return orderDTO;
     }
 
     @Override
-    public List<OrderDTO> findOrdersByCustomerId(Integer customerId) {
-        List<OrderEntity> orderEntities = orderRepository.getOrderByCustomerId(customerId);
-        List<OrderDTO> orders = new ArrayList<>();
-        orderEntities.stream().forEach(orderEntity -> orders.add(getOrderDTOFromEntity(orderEntity)));
+    public Page<OrderDTO> findOrdersByCustomerId(Integer customerId, Pageable pageable) {
+        Page<OrderEntity> orderEntities = orderRepository.getOrderByCustomerId(customerId, pageable);
+        Page<OrderDTO> orders = orderEntities
+                .map((oe) -> {
+                    OrderDTO orderDTOFromEntity = getOrderDTOFromEntity(oe);
+                    orderDTOFromEntity.setCustomer(getCustomerDTOFromEntity(oe.getCustomer()));
+                    return orderDTOFromEntity;
+                });
         return orders;
     }
 
-    private OrderEntity getOrderEntityFromBookDTO(OrderDTO orderDTO) {
+    private OrderEntity getOrderEntityFromOrderDTO(OrderDTO orderDTO) {
         OrderEntity orderEntity = new OrderEntity();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -57,5 +63,13 @@ public class OrderServiceImpl implements OrderService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         modelMapper.map(orderEntity, orderDTO);
         return orderDTO;
+    }
+
+    private CustomerDTO getCustomerDTOFromEntity(CustomerEntity customerEntity) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.map(customerEntity, customerDTO);
+        return customerDTO;
     }
 }

@@ -3,6 +3,8 @@ package code.elif.readingIsGood.customer.ui.controller.order;
 import code.elif.readingIsGood.customer.service.OrderService;
 import code.elif.readingIsGood.customer.service.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +23,8 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public List<OrderDTO> getCustomerOrder(
-            @RequestParam(name = "customerId") Integer customerId) {
-        return orderService.findOrdersByCustomerId(customerId);
+    public Page<OrderDTO> getCustomerOrder(
+            @RequestParam(name = "customerId") Integer customerId, Pageable page) {
+        return orderService.findOrdersByCustomerId(customerId,page);
     }
 }
