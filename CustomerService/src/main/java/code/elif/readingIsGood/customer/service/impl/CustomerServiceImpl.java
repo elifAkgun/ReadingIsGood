@@ -1,9 +1,9 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.OrderRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.entity.CustomerEntity;
+import code.elif.readingIsGood.customer.service.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.repository.OrderRepository;
+import code.elif.readingIsGood.customer.service.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.CustomerService;
 import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
 import org.modelmapper.ModelMapper;

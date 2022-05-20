@@ -1,7 +1,7 @@
 package code.elif.readingIsGood.customer.ui.model;
 
 
-import code.elif.readingIsGood.customer.service.impl.repository.entity.BookEntity;
+import code.elif.readingIsGood.customer.service.repository.entity.BookEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;

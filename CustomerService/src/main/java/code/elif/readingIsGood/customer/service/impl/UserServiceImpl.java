@@ -1,7 +1,7 @@
 package code.elif.readingIsGood.customer.service.impl;
 
-import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.entity.CustomerEntity;
+import code.elif.readingIsGood.customer.service.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.UserService;
 import code.elif.readingIsGood.customer.service.dto.UserDTO;
 import org.modelmapper.ModelMapper;
@@ -32,10 +32,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserDetailsByEmail(String userName) {
-        UserDTO userDTO = new UserDTO();
+        UserDTO userDTO = null;
         CustomerEntity customerEntity = customerRepository.findByEmail(userName);
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.map(customerEntity,userDTO);
+        if(customerEntity!=null) {
+            userDTO = new UserDTO();
+            modelMapper.map(customerEntity, userDTO);
+        }
         return userDTO;
     }
 }

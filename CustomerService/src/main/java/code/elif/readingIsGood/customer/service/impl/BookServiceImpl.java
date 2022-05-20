@@ -1,14 +1,20 @@
 package code.elif.readingIsGood.customer.service.impl;
 
-import code.elif.readingIsGood.customer.service.impl.repository.BookRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.entity.BookEntity;
 import code.elif.readingIsGood.customer.service.BookService;
-import code.elif.readingIsGood.customer.ui.model.Book;
+import code.elif.readingIsGood.customer.service.dto.BookDTO;
+import code.elif.readingIsGood.customer.service.repository.BookRepository;
+import code.elif.readingIsGood.customer.service.repository.entity.BookEntity;
+import org.hibernate.StaleStateException;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -22,13 +28,83 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getAllBooks(){
+    public List<BookDTO> getAllBooks() {
 
         List<BookEntity> bookEntities = bookRepository.findAll();
-        List<Book> books = new ArrayList<>();
-       // bookEntities.stream().forEach(bookEntity -> books.add(Book.map(bookEntity)));
 
+        List<BookDTO> books = new ArrayList<>();
+        if (bookEntities != null) {
+            bookEntities.stream().forEach(b -> {
+                books.add(new BookDTO(b.getId(), b.getName(), b.getAmount(), b.getStock()));
+            });
+        }
         return books;
+    }
+
+    @Override
+    public BookDTO getBook(Integer bookId) {
+
+        BookEntity bookEntity = bookRepository.findById(bookId).get();
+        BookDTO bookDTO = new BookDTO();
+        if (bookEntity != null) {
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+            modelMapper.map(bookEntity, bookDTO);
+        }
+        return bookDTO;
+    }
+
+    @Override
+    public BookDTO createBook(BookDTO bookDTO) {
+        bookDTO.setId(UUID.randomUUID().toString().hashCode());
+        BookEntity bookEntity = getBookEntityFromBookDTO(bookDTO);
+        bookRepository.save(bookEntity);
+        return bookDTO;
+    }
+
+    @Override
+    @Transactional
+    public BookDTO decrementBookStock(Integer bookId, Integer decrement) {
+        BookEntity persistedBook = bookRepository.findById(bookId).get();
+        persistedBook.setStock(persistedBook.getStock() - decrement);
+        BookEntity updatedBook = save(persistedBook);
+        BookDTO bookDTO = getBookDTOFromEntity(updatedBook);
+        return bookDTO;
+    }
+
+    @Override
+    @Transactional
+    public BookDTO updateBookStock(Integer bookId, Integer stock) {
+        BookEntity persistedBook = bookRepository.findById(bookId).get();
+        persistedBook.setStock(stock);
+        BookEntity updatedBook = save(persistedBook);
+        BookDTO bookDTO = getBookDTOFromEntity(updatedBook);
+        return bookDTO;
+    }
+
+    private BookEntity save(BookEntity bookEntity) {
+        try {
+            bookEntity = bookRepository.save(bookEntity);
+        } catch (StaleStateException stateException) {
+            throw new DataIntegrityViolationException("Stock information was not updated. Because stock is changed by another process.");
+        }
+        return bookEntity;
+    }
+
+    private BookEntity getBookEntityFromBookDTO(BookDTO bookDTO) {
+        BookEntity bookEntity = new BookEntity();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.map(bookDTO, bookEntity);
+        return bookEntity;
+    }
+
+    private BookDTO getBookDTOFromEntity(BookEntity updatedBook) {
+        BookDTO bookDTO = new BookDTO();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.map(updatedBook, bookDTO);
+        return bookDTO;
     }
 
 }

@@ -2,13 +2,16 @@ package code.elif.readingIsGood.customer.service.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
-public class BookDTO {
+@NoArgsConstructor
+public class BookDTO implements Serializable {
 
-    @NonNull
+
     private Integer id;
 
     @NonNull
@@ -19,4 +22,5 @@ public class BookDTO {
 
     @NonNull
     private Integer stock;
+
 }

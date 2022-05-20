@@ -2,6 +2,8 @@ package code.elif.readingIsGood.customer.ui.controller.user;
 
 import code.elif.readingIsGood.customer.service.CustomerService;
 import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
+import code.elif.readingIsGood.customer.ui.controller.validation.AdvanceValidations;
+import code.elif.readingIsGood.customer.ui.controller.validation.BasicValidations;
 import code.elif.readingIsGood.customer.ui.error.ApiError;
 import code.elif.readingIsGood.customer.ui.model.Customer;
 import org.modelmapper.ModelMapper;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.GroupSequence;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;

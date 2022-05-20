@@ -1,9 +1,9 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.OrderRepository;
-import code.elif.readingIsGood.customer.service.impl.repository.entity.OrderEntity;
+import code.elif.readingIsGood.customer.service.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.repository.OrderRepository;
+import code.elif.readingIsGood.customer.service.repository.entity.OrderEntity;
 import code.elif.readingIsGood.customer.service.OrderService;
 import code.elif.readingIsGood.customer.ui.model.Order;
 import org.springframework.stereotype.Service;

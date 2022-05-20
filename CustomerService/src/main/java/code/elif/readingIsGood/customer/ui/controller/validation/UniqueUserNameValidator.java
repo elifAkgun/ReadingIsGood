@@ -1,8 +1,8 @@
-package code.elif.readingIsGood.customer.service.validation;
+package code.elif.readingIsGood.customer.ui.controller.validation;
 
 import code.elif.readingIsGood.customer.service.UserService;
 import code.elif.readingIsGood.customer.service.dto.UserDTO;
-import code.elif.readingIsGood.customer.service.validation.anotation.UniqueEmailAddress;
+import code.elif.readingIsGood.customer.ui.controller.validation.anotation.UniqueEmailAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
@@ -17,9 +17,11 @@ public class UniqueUserNameValidator implements ConstraintValidator<UniqueEmailA
 	
 	@Override
 	public boolean isValid(String emailAddress, ConstraintValidatorContext context) {
-		
-		UserDTO inDbUser = userService.getUserDetailsByEmail(emailAddress);
-		
+		UserDTO inDbUser = null;
+
+		if(!emailAddress.isEmpty()) {
+			inDbUser = userService.getUserDetailsByEmail(emailAddress);
+		}
 		if(inDbUser==null) {
 			return true;
 		}

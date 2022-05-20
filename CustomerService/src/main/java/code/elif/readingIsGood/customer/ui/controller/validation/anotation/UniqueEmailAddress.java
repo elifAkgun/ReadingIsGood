@@ -1,6 +1,6 @@
-package code.elif.readingIsGood.customer.service.validation.anotation;
+package code.elif.readingIsGood.customer.ui.controller.validation.anotation;
 
-import code.elif.readingIsGood.customer.service.validation.UniqueUserNameValidator;
+import code.elif.readingIsGood.customer.ui.controller.validation.UniqueUserNameValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

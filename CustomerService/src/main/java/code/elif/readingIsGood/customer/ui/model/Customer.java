@@ -1,8 +1,10 @@
 package code.elif.readingIsGood.customer.ui.model;
 
+import code.elif.readingIsGood.customer.ui.controller.validation.anotation.UniqueEmailAddress;
 import lombok.*;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.io.Serializable;
 @ToString
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Data
 public class Customer implements Serializable {
 
     private Integer id;
@@ -29,6 +32,8 @@ public class Customer implements Serializable {
     @NonNull
     @NotNull(message = "Email is required!")
     @Email
+    @NotEmpty
+    @UniqueEmailAddress
     private String email;
 
     @NonNull
