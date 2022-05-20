@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<OrderEntity,Integer> {
 
-    public List<OrderEntity> getOrderById(Integer id);
+    public List<OrderEntity> getOrderByCustomerId(Integer id);
 }

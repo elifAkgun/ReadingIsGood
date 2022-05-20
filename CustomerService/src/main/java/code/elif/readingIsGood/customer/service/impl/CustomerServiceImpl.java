@@ -28,19 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO getCustomerByNameAndPassword(String email, String password) {
-        CustomerEntity customerEntity = customerRepository.findByEmail(email);
-        CustomerDTO customer = new CustomerDTO();
-
-        ModelMapper modelMapper = new ModelMapper();
-        //Strictly matches source and destination properties
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        modelMapper.map(customerEntity,customer);
-        return  customer;
-    }
-
-    @Override
     public CustomerDTO createCustomer(CustomerDTO customer) {
         customer.setId(UUID.randomUUID().toString().hashCode());
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
