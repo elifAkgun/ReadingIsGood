@@ -1,7 +1,7 @@
-package code.elif.readingIsGood.customer.repository;
+package code.elif.readingIsGood.customer.service.impl.repository;
 
 
-import code.elif.readingIsGood.customer.repository.entity.OrderEntity;
+import code.elif.readingIsGood.customer.service.impl.repository.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

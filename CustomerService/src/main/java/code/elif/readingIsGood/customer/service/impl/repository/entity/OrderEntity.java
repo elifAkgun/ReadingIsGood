@@ -1,4 +1,4 @@
-package code.elif.readingIsGood.customer.repository.entity;
+package code.elif.readingIsGood.customer.service.impl.repository.entity;
 
 
 

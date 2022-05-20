@@ -1,22 +1,16 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
-import code.elif.readingIsGood.customer.ui.model.Customer;
-import code.elif.readingIsGood.customer.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.repository.OrderRepository;
-import code.elif.readingIsGood.customer.repository.entity.CustomerEntity;
+import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.impl.repository.OrderRepository;
+import code.elif.readingIsGood.customer.service.impl.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.CustomerService;
+import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Service

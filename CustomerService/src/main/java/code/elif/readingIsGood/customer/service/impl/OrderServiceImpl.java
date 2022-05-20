@@ -1,18 +1,15 @@
 package code.elif.readingIsGood.customer.service.impl;
 
 
-import code.elif.readingIsGood.customer.ui.model.Customer;
-import code.elif.readingIsGood.customer.ui.model.Order;
-import code.elif.readingIsGood.customer.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.repository.OrderRepository;
-import code.elif.readingIsGood.customer.repository.entity.CustomerEntity;
-import code.elif.readingIsGood.customer.repository.entity.OrderEntity;
+import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.impl.repository.OrderRepository;
+import code.elif.readingIsGood.customer.service.impl.repository.entity.OrderEntity;
 import code.elif.readingIsGood.customer.service.OrderService;
+import code.elif.readingIsGood.customer.ui.model.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {

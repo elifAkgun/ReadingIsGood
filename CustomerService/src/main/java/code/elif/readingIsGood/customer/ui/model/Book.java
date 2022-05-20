@@ -1,6 +1,5 @@
 package code.elif.readingIsGood.customer.ui.model;
 
-import code.elif.readingIsGood.customer.repository.entity.BookEntity;
 import lombok.*;
 
 @Getter

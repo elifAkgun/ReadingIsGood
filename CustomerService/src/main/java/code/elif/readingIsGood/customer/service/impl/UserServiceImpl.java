@@ -1,11 +1,10 @@
 package code.elif.readingIsGood.customer.service.impl;
 
-import code.elif.readingIsGood.customer.repository.CustomerRepository;
-import code.elif.readingIsGood.customer.repository.entity.CustomerEntity;
+import code.elif.readingIsGood.customer.service.impl.repository.CustomerRepository;
+import code.elif.readingIsGood.customer.service.impl.repository.entity.CustomerEntity;
 import code.elif.readingIsGood.customer.service.UserService;
 import code.elif.readingIsGood.customer.service.dto.UserDTO;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

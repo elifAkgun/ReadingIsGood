@@ -1,5 +1,6 @@
 package code.elif.readingIsGood.customer.service.dto;
 
+import code.elif.readingIsGood.customer.service.validation.anotation.UniqueEmailAddress;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -27,6 +28,7 @@ public class CustomerDTO implements Serializable {
     private String lastName;
 
     @NonNull
+    @UniqueEmailAddress
     @NotNull(message = "Email is required!")
     @Email
     private String email;

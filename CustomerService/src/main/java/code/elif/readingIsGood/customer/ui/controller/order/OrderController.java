@@ -1,7 +1,7 @@
 package code.elif.readingIsGood.customer.ui.controller.order;
 
-import code.elif.readingIsGood.customer.ui.model.Order;
 import code.elif.readingIsGood.customer.service.OrderService;
+import code.elif.readingIsGood.customer.ui.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
