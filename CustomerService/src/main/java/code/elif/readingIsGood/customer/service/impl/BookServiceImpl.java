@@ -42,33 +42,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDTO getBook(String bookId) {
-
-        BookEntity bookEntity = bookRepository.findById(bookId).get();
-        BookDTO bookDTO = new BookDTO();
-        if (bookEntity != null) {
-            ModelMapper modelMapper = new ModelMapper();
-            modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-            modelMapper.map(bookEntity, bookDTO);
-        }
-        return bookDTO;
-    }
-
-    @Override
     public BookDTO createBook(BookDTO bookDTO) {
         bookDTO.setId(UUID.randomUUID().toString());
         BookEntity bookEntity = getBookEntityFromBookDTO(bookDTO);
         bookRepository.save(bookEntity);
-        return bookDTO;
-    }
-
-    @Override
-    @Transactional
-    public BookDTO decrementBookStock(String bookId, Integer decrement) {
-        BookEntity persistedBook = bookRepository.findById(bookId).get();
-        persistedBook.setStock(persistedBook.getStock() - decrement);
-        BookEntity updatedBook = save(persistedBook);
-        BookDTO bookDTO = getBookDTOFromEntity(updatedBook);
         return bookDTO;
     }
 

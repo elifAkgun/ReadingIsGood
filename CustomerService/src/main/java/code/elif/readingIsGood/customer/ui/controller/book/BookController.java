@@ -9,12 +9,16 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@Validated
 public class BookController {
 
     BookService bookService;
@@ -31,7 +35,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
 
         ModelMapper modelMapper = new ModelMapper();
         //Strictly matches source and destination properties
@@ -48,8 +52,10 @@ public class BookController {
     }
 
     @PostMapping("/{id}/stock")
-    public ResponseEntity<Book> updateStock(@PathVariable("id") String id,
-                                            @RequestParam("stock") Integer stock) {
+    public ResponseEntity<Book> updateStock(@Valid @PathVariable("id") String id,
+                                            @RequestParam("stock")
+                                            @Min(value = 1, message = "Stock must greater than 0")
+                                                    Integer stock) {
 
         BookDTO bookDTO = bookService.updateBookStock(id, stock);
 

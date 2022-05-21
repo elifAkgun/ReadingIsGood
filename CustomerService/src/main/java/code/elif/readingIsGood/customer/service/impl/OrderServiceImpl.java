@@ -16,7 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -48,6 +50,23 @@ public class OrderServiceImpl implements OrderService {
     public Page<OrderDTO> findOrdersByCustomerId(String customerId, Pageable pageable) {
         Page<OrderEntity> orderEntities = orderRepository.getOrderByCustomerId(customerId, pageable);
         Page<OrderDTO> orders = orderEntities
+                .map((oe) -> {
+                    OrderDTO orderDTOFromEntity = getOrderDTOFromEntity(oe);
+                    return orderDTOFromEntity;
+                });
+        return orders;
+    }
+
+    @Override
+    public Page<OrderDTO> findOrdersByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable) {
+
+        Page<OrderEntity> orderEntitiesByDateBetween =
+                orderRepository.getOrderEntitiesByDateBetween(
+                        LocalDateTime.of(startDate, LocalTime.MIN),
+                        LocalDateTime.of(endDate,LocalTime.MAX),
+                        pageable);
+
+        Page<OrderDTO> orders = orderEntitiesByDateBetween
                 .map((oe) -> {
                     OrderDTO orderDTOFromEntity = getOrderDTOFromEntity(oe);
                     return orderDTOFromEntity;
@@ -92,6 +111,7 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setId(UUID.randomUUID().toString());
         orderEntity.setDate(LocalDateTime.now());
         orderEntity.setAmount(totalOrderAmount.get());
+        orderEntity.setBookCount(bookEntities.size());
         OrderEntity savedOrderEntity = orderRepository.save(orderEntity);
         return getOrderDTOFromEntity(savedOrderEntity);
     }

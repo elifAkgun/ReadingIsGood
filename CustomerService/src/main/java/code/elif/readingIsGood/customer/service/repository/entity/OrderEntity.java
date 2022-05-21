@@ -36,4 +36,7 @@ public class OrderEntity {
     @Column(name = "AMOUNT")
     private Double amount;
 
+    @Column(name = "BOOK_QUANTITY")
+    private Integer bookCount;
+
 }
