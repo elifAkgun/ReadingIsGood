@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO createCustomer(CustomerDTO customer) {
-        customer.setId(UUID.randomUUID().toString().hashCode());
+        customer.setId(UUID.randomUUID().toString());
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 
         ModelMapper modelMapper = new ModelMapper();

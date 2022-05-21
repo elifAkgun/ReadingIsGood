@@ -10,7 +10,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    OrderDTO findOrderById(Integer id);
+    OrderDTO findOrderById(String id);
 
-    Page<OrderDTO> findOrdersByCustomerId(Integer customerId, Pageable pageable);
+    Page<OrderDTO> findOrdersByCustomerId(String customerId, Pageable pageable);
+
+    OrderDTO createOrder(OrderDTO orderDTO);
 }

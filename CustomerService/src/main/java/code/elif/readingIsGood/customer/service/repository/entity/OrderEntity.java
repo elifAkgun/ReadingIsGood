@@ -17,13 +17,12 @@ import java.util.List;
 public class OrderEntity {
 
     @Id
-    @NonNull
-    private Integer id;
+    private String id;
 
-    @NonNull
+
     private LocalDateTime date;
 
-    @NonNull
+
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
     private CustomerEntity customer;
@@ -33,5 +32,8 @@ public class OrderEntity {
             joinColumns = @JoinColumn(name = "ORDER_ID"),
             inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
     private List<BookEntity> books;
+
+    @Column(name = "AMOUNT")
+    private Double amount;
 
 }

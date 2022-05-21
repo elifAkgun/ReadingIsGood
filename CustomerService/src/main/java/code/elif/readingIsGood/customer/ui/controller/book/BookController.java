@@ -48,7 +48,7 @@ public class BookController {
     }
 
     @PostMapping("/{id}/stock")
-    public ResponseEntity<Book> updateStock(@PathVariable("id") Integer id,
+    public ResponseEntity<Book> updateStock(@PathVariable("id") String id,
                                             @RequestParam("stock") Integer stock) {
 
         BookDTO bookDTO = bookService.updateBookStock(id, stock);

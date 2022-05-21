@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 public class Customer implements Serializable {
 
-    private Integer id;
+    private String id;
 
     @NonNull
     @NotNull(message = "First name is required!")

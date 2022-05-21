@@ -13,24 +13,19 @@ import javax.persistence.*;
 public class BookEntity {
 
     @Id
-    @NonNull
-    private Integer id;
+    private String id;
 
-    @NonNull
     @Column(name = "NAME")
     private String name;
 
-    @NonNull
     @Column(name = "AMOUNT")
     private Double amount;
 
-    @NonNull
     @Column(name = "STOCK")
     private Integer stock;
 
     @Version
     @Column(name="VERSION")
     private Integer version;
-
 
 }

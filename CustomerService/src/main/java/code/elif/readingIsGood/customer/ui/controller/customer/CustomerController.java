@@ -38,7 +38,7 @@ public class CustomerController {
 
     @GetMapping("{customerId}/order")
     public Page<OrderDTO> getCustomerOrder(
-            @PathVariable(name = "customerId") Integer customerId, Pageable page) {
+            @PathVariable(name = "customerId") String customerId, Pageable page) {
         return orderService.findOrdersByCustomerId(customerId,page);
     }
 

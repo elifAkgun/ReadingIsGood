@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Book implements Serializable {
 
-    private Integer id;
+    private String id;
 
     @NonNull
     @NotBlank

@@ -10,18 +10,18 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
-    @NonNull
-    private Integer id;
+    private String id;
 
-    @NonNull
     private LocalDateTime date;
 
     @NonNull
     private Customer customer;
 
-    private List<BookEntity> books;
+    @NonNull
+    private List<Book> books;
 
 }

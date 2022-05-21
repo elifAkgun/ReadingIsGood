@@ -42,7 +42,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDTO getBook(Integer bookId) {
+    public BookDTO getBook(String bookId) {
 
         BookEntity bookEntity = bookRepository.findById(bookId).get();
         BookDTO bookDTO = new BookDTO();
@@ -56,7 +56,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDTO createBook(BookDTO bookDTO) {
-        bookDTO.setId(UUID.randomUUID().toString().hashCode());
+        bookDTO.setId(UUID.randomUUID().toString());
         BookEntity bookEntity = getBookEntityFromBookDTO(bookDTO);
         bookRepository.save(bookEntity);
         return bookDTO;
@@ -64,7 +64,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public BookDTO decrementBookStock(Integer bookId, Integer decrement) {
+    public BookDTO decrementBookStock(String bookId, Integer decrement) {
         BookEntity persistedBook = bookRepository.findById(bookId).get();
         persistedBook.setStock(persistedBook.getStock() - decrement);
         BookEntity updatedBook = save(persistedBook);
@@ -74,7 +74,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public BookDTO updateBookStock(Integer bookId, Integer stock) {
+    public BookDTO updateBookStock(String bookId, Integer stock) {
         BookEntity persistedBook = bookRepository.findById(bookId).get();
         persistedBook.setStock(stock);
         BookEntity updatedBook = save(persistedBook);

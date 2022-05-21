@@ -10,13 +10,13 @@ public interface BookService {
 
     List<BookDTO> getAllBooks();
 
-    BookDTO getBook(Integer bookId);
+    BookDTO getBook(String bookId);
 
     BookDTO createBook(BookDTO bookDTO);
 
     @Transactional
-    BookDTO decrementBookStock(Integer bookId, Integer increment);
+    BookDTO decrementBookStock(String bookId, Integer increment);
 
     @Transactional
-    BookDTO updateBookStock(Integer bookId, Integer stock);
+    BookDTO updateBookStock(String bookId, Integer stock);
 }

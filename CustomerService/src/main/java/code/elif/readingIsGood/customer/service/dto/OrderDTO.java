@@ -14,16 +14,15 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDTO {
 
-    @NonNull
-    private Integer id;
+    private String id;
 
-    @NonNull
+
     private LocalDateTime date;
 
     @NonNull
     private CustomerDTO customer;
 
     @NonNull
-    private List<BookEntity> books;
+    private List<BookDTO> books;
 
 }

@@ -12,15 +12,15 @@ import java.io.Serializable;
 public class BookDTO implements Serializable {
 
 
-    private Integer id;
+    private String id;
 
-    @NonNull
+
     private String name;
 
-    @NonNull
+
     private Double amount;
 
-    @NonNull
+
     private Integer stock;
 
 }

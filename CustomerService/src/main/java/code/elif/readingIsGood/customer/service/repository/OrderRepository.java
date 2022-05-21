@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
+public interface OrderRepository extends JpaRepository<OrderEntity, String> {
 
-    Page<OrderEntity> getOrderByCustomerId(Integer id, Pageable pageable);
+    Page<OrderEntity> getOrderByCustomerId(String id, Pageable pageable);
 }

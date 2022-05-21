@@ -12,22 +12,21 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @NoArgsConstructor
 public class CustomerDTO implements Serializable {
 
-    private Integer id;
+    private String id;
 
-    @NonNull
+
     private String firstName;
 
-    @NonNull
+
     private String lastName;
 
-    @NonNull
+
     private String email;
 
-    @NonNull
+
     private String password;
 
 }

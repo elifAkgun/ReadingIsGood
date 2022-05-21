@@ -17,23 +17,20 @@ import java.io.Serializable;
 public class CustomerEntity implements Serializable {
 
     @Id
-    @NonNull
-    @Column(name = "id")
-    private Integer id;
 
-    @NonNull
+    @Column(name = "id")
+    private String id;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @NonNull
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @NonNull
     @Column(name = "EMAIL")
     private String email;
 
-    @NonNull
+    @Column(name = "PASSWORD")
     private String password;
 
 }
