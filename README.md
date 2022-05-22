@@ -8,6 +8,9 @@ It is a backend service developed by using SpringBoot and MySQL. In the architec
 
 #### Before you start, you need to register the application with ```/customer``` url. After that you can create Bearer token to send request ```/login``` endpoint using email and password, then use the Bearer token to send request for each controller endpoints. Otherwise, you cannot access application.
 
+
+![alt text](https://github.com/elifAkgun/ReadingIsGood/blob/master/readingIsGoodArchitecture.png)
+
 ## Controllers
 * CustomerController 
     * Create New Customer, 
