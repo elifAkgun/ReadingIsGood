@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "552d5d91-e2a6-4d92-83a2-12ca33670a9d",
+		"name": "ReadingIsGood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15992895"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "1. Get All Books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Create Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"name\": \"LIFE OF ORANGE\",\n     \"amount\": 10.2,\n     \"stock\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Update Book Stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/books/200d14b4-8a92-49d2-9691-2cc88f35a46e/stock?stock=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"books",
+								"200d14b4-8a92-49d2-9691-2cc88f35a46e",
+								"stock"
+							],
+							"query": [
+								{
+									"key": "stock",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "customer-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"elif2@code-elif.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.102:8082/customer-ws/login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"102"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "customer-login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"elif2@code-elif.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.1.102:8082/customer-ws/login",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"102"
+									],
+									"port": "8082",
+									"path": [
+										"customer-ws",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlmMkBjb2RlLWVsaWYuY29tIiwiZXhwIjoxNjU0MDI1MjExfQ.c4OFQbQ9SAmwLAFm7Gg-R1mPAPiMsq4IlDfy4xMAUi3IDG0tPhnjqMeNOMleiYYoVix-2wabmnxMKcD_ArQlQw"
+								},
+								{
+									"key": "userId",
+									"value": "elif2@code-elif.com"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 May 2022 19:26:52 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "1. Register New Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Elif2\",\n    \"lastName\": \"Akgün\",\n    \"email\": \"elif2@code-elif.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. List Customer Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/customer/580761146/order?page=0&size=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"customer",
+								"580761146",
+								"order"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "1. Create Order For Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\": {\n        \"id\": \"3b6a2859-1101-4d7e-a094-391d2d64a8df\"\n    },\n    \"books\": [\n        {\n            \"id\": \"113479932\"\n        },\n        {\n            \"id\": \"1026691997\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. List Order By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.102:8082/customer-ws/order/fdac284b-7a0f-4da1-8a86-344c9e646da2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"102"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"order",
+								"fdac284b-7a0f-4da1-8a86-344c9e646da2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. List Orders Between StartDate and EndDate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/order/findByDate?startDate=2022-05-17&endDate=2022-05-21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"order",
+								"findByDate"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2022-05-17"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-05-21"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistic",
+			"item": [
+				{
+					"name": "1. Get Customer's Monthly Order Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/customer-ws/statistics?customerId=580761146",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"customer-ws",
+								"statistics"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "580761146"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJNYXJ0YTFAZ21haWwuY29tIiwiZXhwIjoxNjUzODQ4NDQ1fQ.C6fKzsCTmWRMv1XvjltMGpjgGHCswhwFw0i5M4Rm3bBbT4AVLdbzY8b9SXFMc2UZhrSNbZcoHGSA3u7iJ6B5OQ"
+		}
+	]
+}

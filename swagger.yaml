@@ -1,0 +1,460 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://192.168.1.102:60526/
+    description: Generated server url
+paths:
+  /statistics:
+    get:
+      tags:
+        - statistic-controller
+      operationId: getMonthlyStatisticsForCustomer
+      parameters:
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticDTO'
+  /order:
+    post:
+      tags:
+        - order-controller
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+  /books:
+    get:
+      tags:
+        - book-controller
+      operationId: getAllBooks
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDTO'
+    post:
+      tags:
+        - book-controller
+      operationId: createBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Book'
+  /customer:
+    post:
+      tags:
+        - customer-controller
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Customer'
+  /error:
+    get:
+      tags:
+        - error-handler
+      operationId: handleError_2
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    put:
+      tags:
+        - error-handler
+      operationId: handleError_4
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    post:
+      tags:
+        - error-handler
+      operationId: handleError_1
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    delete:
+      tags:
+        - error-handler
+      operationId: handleError_5
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    options:
+      tags:
+        - error-handler
+      operationId: handleError_3
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    head:
+      tags:
+        - error-handler
+      operationId: handleError
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    patch:
+      tags:
+        - error-handler
+      operationId: handleError_6
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /order/{id}:
+    get:
+      tags:
+        - order-controller
+      operationId: getOrderById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+  /customer/{customerId}/order:
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomerOrder
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOrderDTO'
+  /books/{id}/stock:
+    post:
+      tags:
+        - book-controller
+      operationId: updateStock
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: stock
+          in: query
+          required: true
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Book'
+  /order/findByDate:
+    get:
+      tags:
+        - order-controller
+      operationId: getOrdersByDateBetween
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        '200':
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOrderDTO'
+components:
+  schemas:
+    StatisticDTO:
+      type: object
+      properties:
+        orderYear:
+          type: integer
+          format: int32
+        orderMonth:
+          type: integer
+          format: int32
+        totalOrderCount:
+          type: integer
+          format: int32
+        totalPurchasedAmount:
+          type: number
+          format: double
+    Book:
+      required:
+        - amount
+        - name
+        - stock
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        stock:
+          type: integer
+          format: int32
+    Customer:
+      required:
+        - email
+        - firstName
+        - lastName
+        - password
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          maxLength: 2147483647
+          minLength: 2
+          type: string
+        lastName:
+          maxLength: 2147483647
+          minLength: 2
+          type: string
+        email:
+          type: string
+        password:
+          maxLength: 16
+          minLength: 6
+          type: string
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        customer:
+          $ref: '#/components/schemas/Customer'
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+    BookDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        stock:
+          type: integer
+          format: int32
+    CustomerDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    OrderDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        customer:
+          $ref: '#/components/schemas/CustomerDTO'
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookDTO'
+        bookCount:
+          type: integer
+          format: int32
+        amount:
+          type: number
+          format: double
+    ApiError:
+      type: object
+      properties:
+        timeStamp:
+          type: integer
+          format: int64
+        statusCode:
+          type: integer
+          format: int32
+        message:
+          type: string
+        url:
+          type: string
+        validationErrors:
+          type: object
+          additionalProperties:
+            type: string
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    PageOrderDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderDTO'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        numberOfElements:
+          type: integer
+          format: int32
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
