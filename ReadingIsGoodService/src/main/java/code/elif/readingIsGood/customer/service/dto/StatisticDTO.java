@@ -8,6 +8,7 @@ import javax.persistence.Column;
 @Setter
 @ToString
 @AllArgsConstructor
+@EqualsAndHashCode
 public class StatisticDTO {
 
     Integer orderYear;

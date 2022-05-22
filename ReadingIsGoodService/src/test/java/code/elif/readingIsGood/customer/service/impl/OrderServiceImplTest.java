@@ -24,8 +24,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.time.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -83,6 +81,8 @@ class OrderServiceImplTest {
         orderDTO.setBooks(bookDTOs);
         orderDTO.setDate(dateTime);
         orderDTO.setId("1");
+        orderDTO.setAmount(bookDTOs.stream().mapToDouble(BookDTO::getAmount).sum());
+        orderDTO.setBookCount(bookDTOs.size());
 
         given(orderRepository.findById("1"))
                 .willReturn(java.util.Optional.of(orderEntity));

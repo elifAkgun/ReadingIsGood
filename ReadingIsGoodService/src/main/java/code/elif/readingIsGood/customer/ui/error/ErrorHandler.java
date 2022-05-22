@@ -1,5 +1,6 @@
 package code.elif.readingIsGood.customer.ui.error;
 
+import code.elif.readingIsGood.customer.ui.response.ApiError;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;

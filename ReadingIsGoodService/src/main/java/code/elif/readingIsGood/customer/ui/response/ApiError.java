@@ -1,4 +1,4 @@
-package code.elif.readingIsGood.customer.ui.error;
+package code.elif.readingIsGood.customer.ui.response;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

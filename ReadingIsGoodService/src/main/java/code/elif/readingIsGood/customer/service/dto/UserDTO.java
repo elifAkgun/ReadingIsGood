@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 @ToString
 @RequiredArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class UserDTO {
     @NonNull
     @NotNull(message = "Email is required!")

@@ -4,7 +4,6 @@ import code.elif.readingIsGood.customer.service.CustomerService;
 import code.elif.readingIsGood.customer.service.OrderService;
 import code.elif.readingIsGood.customer.service.dto.CustomerDTO;
 import code.elif.readingIsGood.customer.service.dto.OrderDTO;
-import code.elif.readingIsGood.customer.ui.error.ApiError;
 import code.elif.readingIsGood.customer.ui.model.Customer;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -16,7 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import code.elif.readingIsGood.customer.ui.response.ApiError;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;

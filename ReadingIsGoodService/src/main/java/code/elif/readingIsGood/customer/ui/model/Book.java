@@ -11,6 +11,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@Data
 public class Book implements Serializable {
 
     private String id;

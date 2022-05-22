@@ -7,21 +7,28 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
+import java.time.Clock;
+
 @SpringBootApplication
 @EnableDiscoveryClient
 public class CustomerServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CustomerServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CustomerServiceApplication.class, args);
+    }
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder(){
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public MethodValidationPostProcessor methodValidationPostProcessor() {
-		return new MethodValidationPostProcessor();
-	}
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+        return new MethodValidationPostProcessor();
+    }
+
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
+    }
 }

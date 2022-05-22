@@ -1,5 +1,7 @@
 package code.elif.readingIsGood.customer.service.repository.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
@@ -11,7 +13,8 @@ import javax.persistence.*;
 @Table(name = "STATISTIC_VIEW")
 @Entity
 @Immutable
-
+@AllArgsConstructor
+@EqualsAndHashCode
 public class StatisticEntity {
 
     @Id
