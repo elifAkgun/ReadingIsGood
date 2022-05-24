@@ -447,3 +447,12 @@ readingIsGoodService
 </th>
 </tr>
 </table>
+
+##Run commands
+````shell script
+    docker container run --network cambly-network --name readingisgoodservice -e RDS_USERNAME=devuser -e RDS_PASSWORD=devuser -e RDS_HOSTNAME=camblydb -e RDS_PORT=3306 -e RDS_DB_NAME=ReadingIsGood -e NETWORK_NAME=172.18.0.3 -d  readingisgoodservice:readingisgood --link=cambly-network
+    
+    docker container run --network cambly-network --name apigateway -e NETWORK_NAME=172.18.0.3 -p 8082:8082 -d apigateway:readingisgood
+    
+    docker container run --network cambly-network --name discoveryserver -p 8012:8012 -d discoveryserver:readingisgood --link=cambly-network
+````
